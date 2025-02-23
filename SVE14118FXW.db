@@ -14,7 +14,6 @@ blake2b_generic
 bluetooth
 bnep
 bonding
-bpf_preload
 bridge
 btbcm
 btintel
@@ -45,11 +44,9 @@ dm_multipath
 dns_resolver
 drm_buddy
 drm_display_helper
-ecdh_generic
 ext4
 fat
 ff_memless
-fuse
 garp
 gf128mul
 ghash_clmulni_intel
@@ -74,7 +71,6 @@ intel_rapl_msr
 intel_uncore
 iptable_nat
 ip_tables
-irqbypass
 iTCO_vendor_support
 iTCO_wdt
 iw_cm
@@ -83,7 +79,6 @@ jfs
 joydev
 kvm
 kvm_intel
-ledtrig_audio
 ledtrig_netdev
 libarc4
 libcrc32c
@@ -185,7 +180,6 @@ vivaldi_fmap
 wmi
 x86_pkg_temp_thermal
 xfs
-xhci_pci
 xhci_pci_renesas
 xor
 x_tables
