@@ -8,6 +8,7 @@ pkgdesc='Linux ZEN'
 url='https://github.com/zen-kernel/zen-kernel'
 arch=(x86_64)
 license=(GPL-2.0-only)
+groups=('modified')
 makedepends=(
   bc
   cpio
