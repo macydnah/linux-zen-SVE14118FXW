@@ -1,4 +1,5 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
+# Modder: macydnah <86342863+macydnah@users.noreply.github.com>
 
 pkgbase=linux-zen
 pkgver=6.13.4.zen1
@@ -35,6 +36,7 @@ source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
   $url/releases/download/$_srctag/linux-$_srctag.patch.zst{,.sig}
   config  # the main kernel config file
+  SVE14118FXW.db # the modprobed.db for SVE14118FXW hardware
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
@@ -46,12 +48,14 @@ sha256sums=('b80e0bc8efbc31e9ce5a84d1084dcccfa40e01bea8cc25afd06648b93d61339e'
             'SKIP'
             'e1c6382a9bc0664da5e344de07413d2773eadc8002db3aba260d0512d310cea9'
             'SKIP'
-            '457681b58e2e6d67c8445784b5ba3bef652eed91865d77eebe097fbd5e2a29cd')
+            '457681b58e2e6d67c8445784b5ba3bef652eed91865d77eebe097fbd5e2a29cd'
+            '5a58bcbc24f20fe6e4fcbaf2e6edc4e533aa77576a723e6054ee3e6e042f4399')
 b2sums=('2fe8e972e7de458fba6fbb18a08a01f17b49e4a2d31aa1368e50895a2698c6e1aaaf5137d0c0018860de3fe598e4ba425d6126ade7387ba227f690137111a66d'
         'SKIP'
         'eb14739a625f7d6ab4bf60fcaafd8d00ae2a060518c4d42fc7ce56b1037750211ccfae248cffa306352c1a1a6c4ce0640953e13b5a91c69adf820fc80a9b74e7'
         'SKIP'
-        '488bcd4d04d34ab7caf648889e6ce22ab751e4de2c71074062274bc6fb8b0e1a0330451b0ccab15f2a13e6aa9d4583732a06c76e10e0ec063b862e8af1c43855')
+        '488bcd4d04d34ab7caf648889e6ce22ab751e4de2c71074062274bc6fb8b0e1a0330451b0ccab15f2a13e6aa9d4583732a06c76e10e0ec063b862e8af1c43855'
+        'cd5a2e379ceb822e19c18397ca0fc42f01eaa6262bc96d138bc99f98a4f137e2f60a4dbde0ce89e85058a3844a8834f91991ef3ad2f74b8a62bc2bfcf9c4079c')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
@@ -77,6 +81,7 @@ prepare() {
   echo "Setting config..."
   cp ../config .config
   make olddefconfig
+  yes "" | make LSMOD=../SVE14118FXW.db localmodconfig
   diff -u ../config .config || :
 
   make -s kernelrelease > version
