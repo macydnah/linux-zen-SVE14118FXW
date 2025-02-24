@@ -99,6 +99,7 @@ mei_hdcp
 mei_me
 mei_pxp
 mii
+mmc_block
 mmc_core
 mousedev
 mrp
@@ -129,6 +130,7 @@ realtek
 rfcomm
 rfkill
 rndis_host
+rpmb_core
 rtsx_pci
 rtsx_pci_sdmmc
 serio
