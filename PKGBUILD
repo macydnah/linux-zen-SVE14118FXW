@@ -49,14 +49,14 @@ sha256sums=('b80e0bc8efbc31e9ce5a84d1084dcccfa40e01bea8cc25afd06648b93d61339e'
             'SKIP'
             'e1c6382a9bc0664da5e344de07413d2773eadc8002db3aba260d0512d310cea9'
             'SKIP'
-            '6c82ee75aa80abca4d2ad1514eaf92c1028db92eabded9dc3eba0d107c911736'
-            'a1cfae29443e4295dab7bfdec6490bdb937a28bce7ff76aef36e6e06f4f0d109')
+            '6d77e12d51d4046158ac3162166613171a3661f36e1bfa81b2d5219ba206237d'
+            'e2a80e91545a76bd15e9e6a3d33ae62c5ecd5fe3f306c404db88a5d1f02463f3')
 b2sums=('2fe8e972e7de458fba6fbb18a08a01f17b49e4a2d31aa1368e50895a2698c6e1aaaf5137d0c0018860de3fe598e4ba425d6126ade7387ba227f690137111a66d'
         'SKIP'
         'eb14739a625f7d6ab4bf60fcaafd8d00ae2a060518c4d42fc7ce56b1037750211ccfae248cffa306352c1a1a6c4ce0640953e13b5a91c69adf820fc80a9b74e7'
         'SKIP'
-        '824e0531c432d10ffe375c9321a3d0b4ca7f75082b0b4063b818745f63541a919cdc921d453f2bbd80a3faba93f590312eba97f6e73d817167d18984a5479d95'
-        'b54545cc49aeff2099c4c7263378412186aa2840e2b448779fdadba9bef5c7e35bb23686d8e85d89132eb960e8e18080f1d1620e88468a7769961df2f849f52b')
+        '28c7a10ca83c7a77fb1a069422862d75079547cdc1f6db130d04d769f10cc643c9fd5d10ba4ebccc49433b6270fedd5283ce6f00b6678b7ac86e8834c4b3176a'
+        '37dc7e4cb93aa0daf028da9a78fe6b874be54d6f244a7ac6666df3a71e81dce5bdafd68d1d362bc7838d1eecf872aa5405d805eca981aab7cadc21e641e69ee6')
 
 export KBUILD_BUILD_HOST=pluto
 export KBUILD_BUILD_USER=$pkgbase
@@ -82,7 +82,10 @@ prepare() {
   echo "Setting config..."
   cp ../config .config
   make olddefconfig
-  yes "" | make LSMOD=../SVE14118FXW.db localmodconfig
+  # For updated documentation about 'make localmodconfig` see
+  # https://docs.kernel.org/admin-guide/README.html#configuring-the-kernel
+  # for some reason (as of 6.13.4) has still not made it to the upstream 'make help'
+  make LSMOD=../SVE14118FXW.db LMC_KEEP="fs:drivers/gpu/drm/i915" localmodconfig
   diff -u ../config .config || :
 
   make -s kernelrelease > version
