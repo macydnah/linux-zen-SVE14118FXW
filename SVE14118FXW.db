@@ -24,6 +24,7 @@ btusb
 ccm
 cdc_acm
 cdc_ether
+cdrom
 cec
 cfg80211
 cifs
@@ -71,6 +72,7 @@ intel_rapl_msr
 intel_uncore
 iptable_nat
 ip_tables
+isofs
 iTCO_vendor_support
 iTCO_wdt
 iw_cm
