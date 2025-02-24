@@ -121,6 +121,9 @@ ntfs3
 pcspkr
 polyval_clmulni
 polyval_generic
+ppp_generic
+pppoe
+pppox
 psmouse
 r8169
 raid6_pq
@@ -139,6 +142,7 @@ sg
 sha1_ssse3
 sha256_ssse3
 sha512_ssse3
+slhc
 snd
 snd_hda_codec
 snd_hda_codec_generic
